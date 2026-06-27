@@ -74,6 +74,7 @@ import org.opensearch.index.recovery.RemoteStoreRestoreService;
 import org.opensearch.index.recovery.RemoteStoreRestoreService.RemoteRestoreResult;
 import org.opensearch.index.remote.RemoteIndexPathUploader;
 import org.opensearch.indices.DefaultRemoteStoreSettings;
+import org.opensearch.indices.SystemIndices;
 import org.opensearch.node.Node;
 import org.opensearch.repositories.RepositoriesService;
 import org.opensearch.repositories.fs.FsRepository;
@@ -525,7 +526,8 @@ public class GatewayMetaStatePersistedStateTests extends OpenSearchTestCase {
                             )
                         ),
                         writableRegistry(),
-                        () -> 0L
+                        () -> 0L,
+                        new SystemIndices(Collections.emptyMap())
                     );
                 } else {
                     return null;
